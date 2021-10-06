@@ -12,11 +12,10 @@ import {
 	UnauthenticatedRoute,
 } from './AuthRoute';
 import Layout from '../components/Layout/Layout';
-import Contact from '../views/Contact/page/Contact';
 
 import useDecodeToken from '../hooks/useDecodeToken';
 
-import {ROUTES} from './routes';
+import { ROUTES, SHARED__ROUTES } from './routes';
 
 const Router: React.FC = (props: any): JSX.Element => {
 	const isLogged: boolean = useDecodeToken(
@@ -43,7 +42,16 @@ const Router: React.FC = (props: any): JSX.Element => {
 							);
 						}
 					)}
-					<Route exact component={Contact} path='/contactenos'/>
+					{SHARED__ROUTES.map(
+						({ path, key, exact, component }) => (
+							<Route
+								key={key}
+								exact={exact}
+								component={component}
+								path={path}
+							/>
+						)
+					)}
 					<Redirect to='/' />
 				</Switch>
 			</Layout>

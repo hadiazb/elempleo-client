@@ -35,15 +35,23 @@ const Register: React.FC = (props: any): JSX.Element => {
 	} else {
 		return (
 			<div className={`${style.register} size`}>
-				<div className={`container`}>
-					<p>Registrar</p>
-					<form onSubmit={handleOnSubmit}>
+				<div
+					className={`${style.register__container}container`}
+				>
+					<p className={style.register__container__title}>
+						Registrar
+					</p>
+					<form
+						onSubmit={handleOnSubmit}
+						className={style.register__container__form}
+					>
 						<input
 							type='text'
 							name='username'
 							placeholder='username'
 							value={submit.username}
 							onChange={handleOnChange}
+							className={style.input}
 						/>
 						<input
 							type='email'
@@ -51,6 +59,7 @@ const Register: React.FC = (props: any): JSX.Element => {
 							placeholder='email'
 							value={submit.email}
 							onChange={handleOnChange}
+							className={style.input}
 						/>
 						<input
 							type='password'
@@ -58,8 +67,11 @@ const Register: React.FC = (props: any): JSX.Element => {
 							placeholder='password'
 							value={submit.password}
 							onChange={handleOnChange}
+							className={style.input}
 						/>
-						<button type='submit'>Registrarme</button>
+						<button type='submit' className={style.submit}>
+							Registrarme
+						</button>
 					</form>
 				</div>
 			</div>

@@ -22,6 +22,7 @@ export const login =
 				payload: getToken(),
 			});
 		} catch (error: any) {
+			console.log(error);
 			dispatch({
 				type: types.LOGIN.ERROR,
 				payload: error.message,

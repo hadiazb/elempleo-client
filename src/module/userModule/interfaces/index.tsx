@@ -17,3 +17,16 @@ export  interface HeaderProps {
 	loginReducer: loginReducer
 	signout: () => any;
 }
+
+export interface RoutesObject {
+	routes: Routes;
+}
+export interface Routes {
+	auth: Auth[];
+	noAuth: Auth[];
+	sharedRoutes: Auth[];
+}
+export interface Auth {
+	path: string;
+	key: string;
+}
