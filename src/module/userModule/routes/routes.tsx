@@ -1,29 +1,39 @@
-import Contact from '../views/Contact/page/Contact';
-import Home from '../views/Home/page/Home';
+import HomeAnonymous from '../views/HomeAnonymous/page/HomeAnonymous';
 import Login from '../views/Login/page/Login';
+import HomeAuthenticate from '../views/HomeAuthenticate/page/HomeAuthenticate';
+import Register from '../views/Register/page/Register';
 
-const ROUTES: Object[] = [
+import {RouteObject} from '../interfaces/index';
+
+export const ROUTES: RouteObject[] = [
 	{
 		path: '/',
-		key: 'HOME',
+		key: 'home',
 		exact: true,
-		component: Home,
+		component: HomeAnonymous,
 		auth: false,
 	},
-  {
+	{
 		path: '/login',
-		key: 'LOGIN',
+		key: 'login',
 		exact: true,
 		component: Login,
 		auth: false,
 	},
-  {
-		path: '/contactenos',
-		key: 'CONTACT',
+	{
+		path: '/home',
+		key: 'home',
 		exact: true,
-		component: Contact,
+		component: HomeAuthenticate,
+		auth: true,
+	},
+	{
+		path: '/registrar',
+		key: 'register',
+		exact: true,
+		component: Register,
 		auth: false,
 	},
 ];
 
-export default ROUTES;
+

@@ -1,35 +1,63 @@
 import React from 'react';
 import {
 	BrowserRouter as Routes,
+	Redirect,
 	Route,
 	Switch,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import {
+	AuthenticatedRoute,
+	UnauthenticatedRoute,
+} from './AuthRoute';
 import Layout from '../components/Layout/Layout';
-import NotFound from '../views/NotFound/page/NotFound';
+import Contact from '../views/Contact/page/Contact';
 
-import ROUTES from './routes';
+import useDecodeToken from '../hooks/useDecodeToken';
 
-const Router: React.FC = (): JSX.Element => {
+import {ROUTES} from './routes';
+
+const Router: React.FC = (props: any): JSX.Element => {
+	const isLogged: boolean = useDecodeToken(
+		props.loginReducer.login
+	);
+
 	return (
 		<Routes>
-			<Layout>
+			<Layout isLogged={isLogged}>
 				<Switch>
 					{ROUTES.map(
-						({ path, key, exact, component, auth }: any) => (
-							<Route
-								path={path}
-								key={key}
-								exact={exact}
-								component={component}
-							/>
-						)
+						({ path, key, exact, component, auth }) => {
+							const AuthRoute = auth
+								? AuthenticatedRoute
+								: UnauthenticatedRoute;
+							return (
+								<AuthRoute
+									path={path}
+									key={key}
+									exact={exact}
+									component={component}
+									logged={isLogged}
+								/>
+							);
+						}
 					)}
-					<Route path='*' component={NotFound} />
+					<Route exact component={Contact} path='/contactenos'/>
+					<Redirect to='/' />
 				</Switch>
 			</Layout>
 		</Routes>
 	);
 };
 
-export default Router;
+const mapStateToProps = ({ loginReducer }: any) => {
+	return { loginReducer };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Router);

@@ -1,0 +1,30 @@
+.home {
+  margin: 10px 0;
+}
+
+.home__title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.home__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.home__container__title {
+  display: block;
+  width: 300px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home__container__title:first-child {
+  max-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,10 +1,14 @@
 import React from 'react';
 
+import style from './footer.module.css';
+
 const Footer: React.FC = (): JSX.Element => {
 	return (
-		<div>
-			<p>Footer</p>
-		</div>
+		<footer className={`${style.footer}`}>
+			<div className={`${style.footer__container} container`}>
+				<p className={style.footer__container__title}>Footer</p>
+			</div>
+		</footer>
 	);
 };
 

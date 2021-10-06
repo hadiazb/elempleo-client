@@ -1,0 +1,21 @@
+.header {
+  background-color: rgb(3, 41, 29);
+}
+
+.header__navigation {
+  height: 45px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.active_nav {
+  text-decoration: underline;
+}
+
+.header__navigation__item {
+  color: #ffffff;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+}

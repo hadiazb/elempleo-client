@@ -2,11 +2,17 @@ import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const Layout: React.FC = ({ children }): JSX.Element => {
+interface LayoutProps {
+	isLogged: boolean;
+}
+
+const Layout: React.FC<LayoutProps> = (
+	props
+): JSX.Element => {
 	return (
 		<Fragment>
-			<Header />
-			{children}
+			<Header isLogged={props.isLogged} />
+			{props.children}
 			<Footer />
 		</Fragment>
 	);

@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const Contact: React.FC = ():JSX.Element => {
-  return (
-    <div>
-      <p>Contact</p>
-    </div>
-  )
-}
+import style from './contact.module.css'
+
+const Contact: React.FC = (): JSX.Element => {
+	return (
+		<div className={`${style.contact} size`}>
+			<div className={`container`}>
+				<p>Contact</p>
+			</div>
+		</div>
+	);
+};
 
 export default Contact;
