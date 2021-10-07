@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, {
+	Fragment,
+	useState,
+	useEffect,
+} from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -21,6 +25,7 @@ const Login: React.FC = (props: any): JSX.Element => {
 	});
 	const [type, setType] = useState(true);
 	const [focus, setFocus] = useState(true);
+	const [mount, setMount] = useState(false);
 
 	const handleOnchange = (event: any) => {
 		setSubmit({
@@ -47,54 +52,70 @@ const Login: React.FC = (props: any): JSX.Element => {
 		}
 	};
 
-	if (isLogged) {
-		return <Redirect to='/home' />;
-	} else {
-		return (
-			<div className={`${style.login} size`}>
-				<div className={`${style.login__container} container`}>
-					<p className={style.login__container__title}>Login</p>
-					<form
-						onSubmit={handleOnSubmit}
-						className={style.login__container__form}
-					>
-						<input
-							className={style.input}
-							onChange={handleOnchange}
-							type='email'
-							name='email'
-							placeholder='email'
-							value={submit.email}
-						/>
-						<div className={style.continer__password}>
+	useEffect(() => {
+		setMount(true);
+		return () => {
+			setMount(false);
+		};
+	}, []);
+
+
+	return (
+		<Fragment>
+			{isLogged && mount ? (
+				<Redirect to='/home' />
+			) : (
+				<div className={`${style.login} size`}>
+					<div className={`${style.login__container} container`}>
+						<p className={style.login__container__title}>Login</p>
+						<form
+							onSubmit={handleOnSubmit}
+							className={style.login__container__form}
+						>
 							<input
-								className={`${style.input__password}`}
+								className={style.input}
 								onChange={handleOnchange}
-								type={type ? 'password' : 'text'}
-								name='password'
-								placeholder='password'
-								value={submit.password}
-								style={{ letterSpacing: focus ? '0.5px' : '4px' }}
+								type='email'
+								name='email'
+								placeholder='email'
+								value={submit.email}
 							/>
-							<span
-								onClick={handleLook}
-								className={style.span__input}
-							>
-								{type ? (
-									<AiFillEyeInvisible color='rgba(0, 0, 0, 0.5)' />
-								) : (
-									<AiFillEye color='rgba(0, 0, 0, 0.5)' />
-								)}
-							</span>
-						</div>
-						<button className={style.submit} type='submit'>
-							Iniciar sesión
-						</button>
-					</form>
+							<div className={style.continer__password}>
+								<input
+									className={`${style.input__password}`}
+									onChange={handleOnchange}
+									type={type ? 'password' : 'text'}
+									name='password'
+									placeholder='password'
+									value={submit.password}
+									style={{ letterSpacing: focus ? '0.5px' : '4px' }}
+								/>
+								<span
+									onClick={handleLook}
+									className={style.span__input}
+								>
+									{type ? (
+										<AiFillEyeInvisible color='rgba(0, 0, 0, 0.5)' />
+									) : (
+										<AiFillEye color='rgba(0, 0, 0, 0.5)' />
+									)}
+								</span>
+							</div>
+							{!props.loginReducer.loading ? (
+								<button className={style.submit} type='submit'>
+									Iniciar sesión
+								</button>
+							) : (
+								<button className={style.submit} type='submit'>
+									Cargando...
+								</button>
+							)}
+						</form>
+					</div>
 				</div>
-			</div>
-		);
-	}
+			)}
+		</Fragment>
+	);
 };
 const mapStateToProps = ({ loginReducer }: any) => {
 	return { loginReducer };

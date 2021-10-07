@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 import { signout } from '../../../../redux/actions/loginActions';
 import { ROUTES } from '../../routes/routes';
+import { config } from '../../../../config';
+// import { filterRoute } from '../../../../utils/FilterRoute/FilterRoute';
 
 import { HeaderProps } from '../../interfaces/index';
 
@@ -25,10 +27,13 @@ const Header: React.FC<HeaderProps> = (
 					exact
 					to={
 						!props.isLogged
-							? ROUTES.filter((route) => route.key === 'home')[0]
-									.path
-							: ROUTES.filter((route) => route.key === 'home')[1]
-									.path
+							? ROUTES.filter(
+									(route) =>
+										route.key === config.routes.noAuth[0].key
+							  )[0].path
+							: ROUTES.filter(
+									(route) => route.key === config.routes.auth[0].key
+							  )[1].path
 					}
 				>
 					Inicio

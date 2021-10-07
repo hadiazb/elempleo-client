@@ -6,7 +6,7 @@ const Contact: React.FC = (): JSX.Element => {
 	return (
 		<div className={`${style.contact} size`}>
 			<div className={`container`}>
-				<p>Contact</p>
+				<p>Contact hhhhhjhjhjh</p>
 			</div>
 		</div>
 	);

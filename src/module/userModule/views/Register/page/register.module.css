@@ -30,6 +30,7 @@
 	height: 35px;
 	outline: none;
 	padding: 10px;
+	border: 1px solid rgba(0, 0, 0, .5);
 }
 
 .register__container__form .submit {

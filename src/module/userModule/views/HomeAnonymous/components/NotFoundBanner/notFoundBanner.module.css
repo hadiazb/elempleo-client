@@ -1,0 +1,19 @@
+.notFoundBanner {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(232, 235, 236);
+}
+
+.notFoundBanner .notFoundBanner__title {
+  margin: 20px 0 30px;
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, .7);
+}
+
+.notFoundBanner .notFoundBanner__paragraph {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, .7);
+}
