@@ -1,8 +1,4 @@
-import HomeAnonymous from '../views/HomeAnonymous/page/HomeAnonymous';
-import Login from '../views/Login/page/Login';
-import HomeAuthenticate from '../views/HomeAuthenticate/page/HomeAuthenticate';
-import Register from '../views/Register/page/Register';
-import Contact from '../views/Contact/page/Contact';
+import React from 'react';
 
 import { RouteObject } from '../interfaces/index';
 import { config } from '../../../config';
@@ -18,31 +14,54 @@ const {
 
 export const ROUTES: RouteObject[] = [
 	{
-		path: filterRoute(config.routes.noAuth, REACT_APP_HOME_NOAUTH_KEY),
+		path: filterRoute(
+			config.routes.noAuth,
+			REACT_APP_HOME_NOAUTH_KEY
+		),
 		key: REACT_APP_HOME_NOAUTH_KEY,
 		exact: true,
-		component: HomeAnonymous,
+		component: React.lazy(
+			() => import('../views/HomeAnonymous/page/HomeAnonymous')
+		),
 		auth: false,
 	},
 	{
-		path: filterRoute(config.routes.noAuth, REACT_APP_HOME_LOGIN_KEY),
+		path: filterRoute(
+			config.routes.noAuth,
+			REACT_APP_HOME_LOGIN_KEY
+		),
 		key: REACT_APP_HOME_LOGIN_KEY,
 		exact: true,
-		component: Login,
+		component: React.lazy(
+			() => import('../views/Login/page/Login')
+		),
 		auth: false,
 	},
 	{
-		path: filterRoute(config.routes.auth, REACT_APP_HOME_AUTH_KEY),
+		path: filterRoute(
+			config.routes.auth,
+			REACT_APP_HOME_AUTH_KEY
+		),
 		key: REACT_APP_HOME_AUTH_KEY,
 		exact: true,
-		component: HomeAuthenticate,
+		component: React.lazy(
+			() =>
+				import(
+					'../views/HomeAuthenticate/page/HomeAuthenticate'
+				)
+		),
 		auth: true,
 	},
 	{
-		path: filterRoute(config.routes.noAuth, REACT_APP_HOME_REGISTER_KEY),
+		path: filterRoute(
+			config.routes.noAuth,
+			REACT_APP_HOME_REGISTER_KEY
+		),
 		key: REACT_APP_HOME_REGISTER_KEY,
 		exact: true,
-		component: Register,
+		component: React.lazy(
+			() => import('../views/Register/page/Register')
+		),
 		auth: false,
 	},
 ];
@@ -55,7 +74,9 @@ export const SHARED__ROUTES: RouteObject[] = [
 		),
 		key: REACT_APP_HOME_CONTACT_KEY,
 		exact: true,
-		component: Contact,
+		component: React.lazy(
+			() => import('../views/Contact/page/Contact')
+		),
 		auth: false,
 	},
 ];

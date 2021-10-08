@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { signout } from '../../../../redux/actions/loginActions';
-import { ROUTES } from '../../routes/routes';
-import { config } from '../../../../config';
-// import { filterRoute } from '../../../../utils/FilterRoute/FilterRoute';
 
 import { HeaderProps } from '../../interfaces/index';
 
 import style from './header.module.css';
+
+const {
+	REACT_APP_HOME_AUTH,
+	REACT_APP_HOME_NOAUTH,
+	REACT_APP_HOME_LOGIN,
+	REACT_APP_HOME_REGISTER,
+	REACT_APP_HOME_CONTACT,
+}: any = process.env;
 
 const Header: React.FC<HeaderProps> = (
 	props
@@ -27,13 +32,8 @@ const Header: React.FC<HeaderProps> = (
 					exact
 					to={
 						!props.isLogged
-							? ROUTES.filter(
-									(route) =>
-										route.key === config.routes.noAuth[0].key
-							  )[0].path
-							: ROUTES.filter(
-									(route) => route.key === config.routes.auth[0].key
-							  )[1].path
+							? REACT_APP_HOME_AUTH
+							: REACT_APP_HOME_NOAUTH
 					}
 				>
 					Inicio
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = (
 					activeClassName={style.active_nav}
 					className={`${style.header__navigation__item}`}
 					exact
-					to='/contactenos'
+					to={REACT_APP_HOME_CONTACT}
 				>
 					Contactenos
 				</NavLink>
@@ -52,10 +52,7 @@ const Header: React.FC<HeaderProps> = (
 							activeClassName={style.active_nav}
 							className={`${style.header__navigation__item}`}
 							exact
-							to={
-								ROUTES.filter((route) => route.key === 'login')[0]
-									.path
-							}
+							to={REACT_APP_HOME_LOGIN}
 						>
 							Login
 						</NavLink>
@@ -63,7 +60,7 @@ const Header: React.FC<HeaderProps> = (
 							activeClassName={style.active_nav}
 							className={`${style.header__navigation__item}`}
 							exact
-							to={ROUTES[3].path}
+							to={REACT_APP_HOME_REGISTER}
 						>
 							Registrar
 						</NavLink>

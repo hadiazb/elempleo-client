@@ -13,7 +13,7 @@ const Banner: React.FC = ({
 	getImages,
 }: any): JSX.Element => {
 	useEffect(() => {
-		(async () => {
+		(() => {
 			if (bannersReducer.banners.length === 0) {
 				getImages();
 			}

@@ -1,0 +1,18 @@
+export const settings: any = {
+	items: 1,
+	swipeAngle: false,
+	speed: 1000,
+	slideBy: 'page',
+	mode: 'carousel',
+	lazyload: true,
+	nav: true,
+	mouseDrag: true,
+	controls: false,
+	controlsPosition: 'top',
+	controlsText: ['<', '>'],
+	loop: true,
+	autoplay: true,
+	autoplayButtonOutput: false,
+	arrowKeys: true,
+	autoplayTimeout: 8000,
+};

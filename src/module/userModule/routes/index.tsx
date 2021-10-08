@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
 	BrowserRouter as Routes,
 	Redirect,
@@ -25,35 +25,37 @@ const Router: React.FC = (props: any): JSX.Element => {
 	return (
 		<Routes>
 			<Layout isLogged={isLogged}>
-				<Switch>
-					{ROUTES.map(
-						({ path, key, exact, component, auth }) => {
-							const AuthRoute = auth
-								? AuthenticatedRoute
-								: UnauthenticatedRoute;
-							return (
-								<AuthRoute
-									path={path}
+				<Suspense fallback={<p>Cargando......</p>}>
+					<Switch>
+						{ROUTES.map(
+							({ path, key, exact, component, auth }) => {
+								const AuthRoute = auth
+									? AuthenticatedRoute
+									: UnauthenticatedRoute;
+								return (
+									<AuthRoute
+										path={path}
+										key={key}
+										exact={exact}
+										component={component}
+										logged={isLogged}
+									/>
+								);
+							}
+						)}
+						{SHARED__ROUTES.map(
+							({ path, key, exact, component }) => (
+								<Route
 									key={key}
 									exact={exact}
 									component={component}
-									logged={isLogged}
+									path={path}
 								/>
-							);
-						}
-					)}
-					{SHARED__ROUTES.map(
-						({ path, key, exact, component }) => (
-							<Route
-								key={key}
-								exact={exact}
-								component={component}
-								path={path}
-							/>
-						)
-					)}
-					<Redirect to='/' />
-				</Switch>
+							)
+						)}
+						<Redirect to='/' />
+					</Switch>
+				</Suspense>
 			</Layout>
 		</Routes>
 	);
