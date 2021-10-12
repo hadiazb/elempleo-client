@@ -20,18 +20,21 @@ const http = (url: string) => {
 	fetch.interceptors.response.use(
 		(response) => response,
 		(error) => {
-			if (error.response) {
-				switch (error.response.status) {
-					case 401:
-						// window.location = '/login';
-						break;
-					case 404:
-						return Promise.reject(error.message);
-					default:
-						return Promise.reject(error);
-				}
+			if (error.message === 'Network Error') {
+				return Promise.reject(`Error${error.message}, Al parecer el servicio que trae el recurso no esta disponible`);
 			}
-			return Promise.reject(error);
+			// if (error.response) {
+			// 	switch (error.response.status) {
+			// 		case 401:
+			// 			// window.location = '/login';
+			// 			break;
+			// 		case 404:
+			// 			return Promise.reject(error.message);
+			// 		default:
+			// 			return Promise.reject(error);
+			// 	}
+			// }
+			// return Promise.reject(error);
 		}
 	);
 

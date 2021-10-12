@@ -1,0 +1,14 @@
+.error {
+	background-color: rgb(231, 145, 145);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: calc(-50vw + 50%);
+	margin-right: calc(-50vw + 50%);
+	height: 25px;
+	color: rgb(84, 8, 8);
+}
+
+.error__message {
+	margin: 0 10px;
+}

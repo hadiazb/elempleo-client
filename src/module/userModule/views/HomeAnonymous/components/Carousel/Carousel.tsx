@@ -1,14 +1,20 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-// import TinySlider from 'tiny-slider-react';
+import TinySlider from 'tiny-slider-react';
 
+import NotFoundRecourse from '../NotFoundRecouse/NotFoundRecourse';
+import ErrorMessage from '../../../../components/ErrorMessage/ErrorMessage';
+
+import { settings } from './setting';
 import { getUniversities } from '../../../../../../redux/actions/universitiesActions';
 
-const Carousel: React.FC = ({
+import './carousel.css';
+
+const Carousel: React.FC<CarouselProps> = ({
 	getUniversities,
 	carouselReducer,
-}: any): JSX.Element => {
+}): JSX.Element => {
 	useEffect(() => {
 		(() => {
 			if (carouselReducer.universities.length === 0) {
@@ -16,18 +22,41 @@ const Carousel: React.FC = ({
 			}
 		})();
 	}, [carouselReducer.universities.length, getUniversities]);
-	console.log(carouselReducer);
+
 	return (
-		<div>
+		<div className='carousel'>
 			{carouselReducer.loading ? (
 				<p>Cargando</p>
 			) : (
 				<Fragment>
-					{carouselReducer.error && <p>Hay un error</p>}
+					{carouselReducer.error && (
+						<ErrorMessage error={carouselReducer.error} />
+					)}
 					{carouselReducer.universities.length > 0 ? (
-						<p>Data</p>
+						<div className='carousel__container'>
+							<TinySlider settings={settings}>
+								{carouselReducer.universities.map((image) => (
+									<a
+										href={image.link}
+										key={image.id}
+										className='link'
+									>
+										<img
+											src={image.image}
+											alt={image.imageDescription}
+											className='link__image'
+										/>
+										<p className='link__text'>{image.name}</p>
+									</a>
+								))}
+							</TinySlider>
+						</div>
 					) : (
-						<p>No hay data </p>
+						<Fragment>
+							{!carouselReducer.error && (
+								<NotFoundRecourse text='Carousel' />
+							)}
+						</Fragment>
 					)}
 				</Fragment>
 			)}
@@ -45,3 +74,23 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Carousel);
+
+interface CarouselReducer {
+	universities: Carousel[];
+	loading: boolean;
+	error: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+interface Carousel {
+	id: number;
+	image: string;
+	name: string;
+	imageDescription: string;
+	status: boolean;
+	link: string;
+}
+interface CarouselProps {
+	carouselReducer: CarouselReducer;
+	getUniversities: any;
+}

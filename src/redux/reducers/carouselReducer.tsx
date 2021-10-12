@@ -5,13 +5,21 @@ interface Action {
 	payload: any;
 }
 
-interface State {
-	universities: [];
+interface CarouselReducer {
+	universities: Carousel[];
 	loading: boolean;
 	error: string;
 }
+interface Carousel {
+	id: number;
+	image: string;
+	name: string;
+	imageDescription: string;
+	status: boolean;
+	link: string;
+}
 
-const INITIAL_STATE: State = {
+const INITIAL_STATE: CarouselReducer = {
 	universities: [],
 	loading: false,
 	error: '',

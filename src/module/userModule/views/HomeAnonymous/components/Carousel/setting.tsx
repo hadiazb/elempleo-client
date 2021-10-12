@@ -5,14 +5,26 @@ export const settings: any = {
 	slideBy: 'page',
 	mode: 'carousel',
 	lazyload: true,
-	nav: true,
+	nav: false,
 	mouseDrag: true,
-	controls: false,
+	controls: true,
 	controlsPosition: 'top',
-	controlsText: ['<', '>'],
+	controlsText: ['', ''],
 	loop: true,
 	autoplay: true,
 	autoplayButtonOutput: false,
 	arrowKeys: true,
 	autoplayTimeout: 8000,
+	center: false,
+	responsive: {
+		300: {
+			items: 2,
+		},
+		640: {
+			items: 3,
+		},
+		1024: {
+			items: 4,
+		},
+	},
 };

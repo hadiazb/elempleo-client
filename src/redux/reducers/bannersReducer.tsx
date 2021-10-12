@@ -5,8 +5,17 @@ interface Action {
 	payload: any;
 }
 
+interface Banners {
+	id: number;
+	imgDesktop: string;
+	imgMobile: string;
+	imgDescription: string;
+	title: string;
+	subtitle: string;
+}
+
 interface State {
-	banners: [];
+	banners: Banners[];
 	loading: boolean;
 	error: string;
 }
