@@ -8,7 +8,10 @@ import {
 } from '../../utils/StorageUtil/StorageUtil';
 
 export const login =
-	(login: Object) => async (dispatch: any) => {
+	(login: Object) =>
+	async (
+		dispatch: (arg0: { type: string; payload?: any }) => void
+	) => {
 		dispatch({
 			type: types.LOGIN.LOADING,
 		});
@@ -32,7 +35,9 @@ export const login =
 
 export const signout =
 	() =>
-	(dispatch: any): void => {
+	(
+		dispatch: (arg0: { type: string; payload?: any }) => void
+	): void => {
 		dispatch({
 			type: types.LOGIN.LOADING,
 		});

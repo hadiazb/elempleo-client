@@ -11,14 +11,12 @@ import {
 } from 'react-icons/ai';
 
 import { login } from '../../../../../redux/actions/loginActions';
-import useDecodeToken from '../../../hooks/useDecodeToken';
+import useDecode from '../../../hooks/useDecode';
 
 import style from './login.module.css';
 
 const Login: React.FC = (props: any): JSX.Element => {
-	const isLogged: boolean = useDecodeToken(
-		props.loginReducer.login
-	);
+	const { isLogged } = useDecode(props.loginReducer.login);
 	const [submit, setSubmit] = useState({
 		email: '',
 		password: '',
@@ -58,7 +56,6 @@ const Login: React.FC = (props: any): JSX.Element => {
 			setMount(false);
 		};
 	}, []);
-
 
 	return (
 		<Fragment>

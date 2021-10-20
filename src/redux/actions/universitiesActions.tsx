@@ -2,7 +2,10 @@ import { types } from '../types/index';
 import UniversitiesService from '../../module/userModule/services/UniversitiesService/UniversitiesService';
 
 export const getUniversities =
-	() => async (dispatch: any) => {
+	() =>
+	async (
+		dispatch: (arg0: { type: string; payload?: any }) => void
+	) => {
 		dispatch({
 			type: types.CAROUSEL.LOADING,
 		});
@@ -13,7 +16,7 @@ export const getUniversities =
 				type: types.CAROUSEL.GET_CAROUSEL,
 				payload: data.body,
 			});
-		} catch (error: any) {
+		} catch (error) {
 			dispatch({
 				type: types.CAROUSEL.ERROR,
 				payload: error,

@@ -1,24 +1,24 @@
 import { types } from '../types/index';
-import BannersService from '../../module/userModule/services/BannersService/BannersService';
+import ConfigService from '../../module/userModule/services/ConfigService/ConfigService';
 
-export const getImages =
+export const getConfig =
 	() =>
 	async (
 		dispatch: (arg0: { type: string; payload?: any }) => void
 	) => {
 		dispatch({
-			type: types.BANNER.LOADING,
+			type: types.CONFIG.LOADING,
 		});
 		try {
-			const { data } = await BannersService.getAll();
+			const { data } = await ConfigService.getAll();
 
 			dispatch({
-				type: types.BANNER.GET_BANNERS,
+				type: types.CONFIG.GET_CONFIG,
 				payload: data.body,
 			});
 		} catch (error: any) {
 			dispatch({
-				type: types.BANNER.ERROR,
+				type: types.CONFIG.ERROR,
 				payload: error,
 			});
 		}

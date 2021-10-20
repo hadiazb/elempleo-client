@@ -39,3 +39,26 @@ export const registerUser =
 			});
 		}
 	};
+
+export const getUser =
+	(id: string) =>
+	async (
+		dispatch: (arg0: { type: string; payload?: any }) => void
+	) => {
+		dispatch({
+			type: types.USERS.LOADING,
+		});
+		try {
+			const { data } = await UserService.getById(id);
+
+			dispatch({
+				type: types.USERS.GET_USER,
+				payload: data.body,
+			});
+		} catch (error) {
+			dispatch({
+				type: types.USERS.ERROR,
+				payload: error,
+			});
+		}
+	};

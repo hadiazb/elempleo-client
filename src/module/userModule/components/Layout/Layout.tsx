@@ -4,15 +4,19 @@ import Footer from '../Footer/Footer';
 
 interface LayoutProps {
 	isLogged: boolean;
+	role: number | null;
+	children: any;
 }
 
-const Layout: React.FC<LayoutProps> = (
-	props
-): JSX.Element => {
+const Layout: React.FC<LayoutProps> = ({
+	isLogged,
+	role,
+	children,
+}): JSX.Element => {
 	return (
 		<Fragment>
-			<Header isLogged={props.isLogged} />
-			{props.children}
+			<Header isLogged={isLogged} role={role} />
+			{children}
 			<Footer />
 		</Fragment>
 	);

@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { signout } from '../../../../redux/actions/loginActions';
+import DropDown from '../DropDown/DropDown';
 
-import { HeaderProps } from '../../interfaces/index';
+import { signout } from '../../../../redux/actions/loginActions';
 
 import style from './header.module.css';
 
@@ -16,11 +16,13 @@ const {
 	REACT_APP_HOME_CONTACT,
 }: any = process.env;
 
-const Header: React.FC<HeaderProps> = (
-	props
-): JSX.Element => {
+const Header: React.FC<HeaderProps> = ({
+	signout,
+	isLogged,
+	role
+}): JSX.Element => {
 	const handleClick = (): void => {
-		props.signout();
+		signout();
 	};
 
 	return (
@@ -31,7 +33,7 @@ const Header: React.FC<HeaderProps> = (
 					className={`${style.header__navigation__item}`}
 					exact
 					to={
-						!props.isLogged
+						!isLogged
 							? REACT_APP_HOME_AUTH
 							: REACT_APP_HOME_NOAUTH
 					}
@@ -46,7 +48,7 @@ const Header: React.FC<HeaderProps> = (
 				>
 					Contactenos
 				</NavLink>
-				{!props.isLogged ? (
+				{!isLogged ? (
 					<>
 						<NavLink
 							activeClassName={style.active_nav}
@@ -66,15 +68,7 @@ const Header: React.FC<HeaderProps> = (
 						</NavLink>
 					</>
 				) : (
-					<NavLink
-						activeClassName={style.active_nav}
-						className={`${style.header__navigation__item}`}
-						exact
-						to='/'
-						onClick={handleClick}
-					>
-						Signout
-					</NavLink>
+					<DropDown onClick={handleClick} role={role}/>
 				)}
 			</nav>
 		</header>
@@ -91,3 +85,15 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Header);
+
+export interface loginReducer {
+	login: string | null;
+	error: string;
+	loading: boolean;
+}
+export interface HeaderProps {
+	isLogged: boolean;
+	role: number | null;
+	loginReducer: loginReducer;
+	signout: () => any;
+}

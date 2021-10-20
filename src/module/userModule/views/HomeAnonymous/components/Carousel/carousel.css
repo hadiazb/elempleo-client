@@ -1,11 +1,10 @@
 .carousel {
-	/* margin: 20px 0; */
 	position: relative;
 	padding: 0 10px;
 }
 
 .carousel__container {
-	/* border: 1px solid red; */
+	margin: 10px 0;
 }
 
 .tns-outer {

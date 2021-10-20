@@ -5,16 +5,21 @@ interface Action {
 	payload: any;
 }
 
+interface Config {
+	timeBanner: number;
+	timeCarousel: number;
+	captchaId: string;
+	captchaVisible: boolean;
+}
+
 interface State {
-	users: [];
-	user: [];
+	config: Config[];
 	loading: boolean;
 	error: string;
 }
 
 const INITIAL_STATE: State = {
-	users: [],
-	user: [],
+	config: [],
 	loading: false,
 	error: '',
 };
@@ -22,30 +27,17 @@ const INITIAL_STATE: State = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = INITIAL_STATE, action: Action) => {
 	switch (action.type) {
-		case types.USERS.CREATE_USER:
+		case types.CONFIG.GET_CONFIG:
 			return {
 				...state,
-				user: action.payload,
+				config: action.payload,
 				loading: false,
 				error: '',
 			};
-		case types.USERS.GET_USERS:
-			return {
-				...state,
-				users: action.payload,
-				loading: false,
-				error: '',
-			};
-		case types.USERS.GET_USER:
-			return {
-				...state,
-				user: action.payload,
-				loading: false,
-				error: '',
-			};
-		case types.USERS.LOADING:
+		case types.CONFIG.LOADING:
 			return { ...state, loading: true };
-		case types.USERS.ERROR:
+
+		case types.CONFIG.ERROR:
 			return {
 				...state,
 				loading: false,

@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import TinySlider from 'tiny-slider-react';
+
 import NotFoundRecourse from '../NotFoundRecouse/NotFoundRecourse';
 import ErrorMessage from '../../../../components/ErrorMessage/ErrorMessage';
+import Spinner from '../../../../components/Spinner/Spinner';
 
 import { getImages } from '../../../../../../redux/actions/bannerActions';
-import { settings } from './setting';
+import { useSettings } from './setting';
 
 import './banner.css';
 
@@ -13,6 +15,8 @@ const Banner: React.FC<BannerProps> = ({
 	bannersReducer,
 	getImages,
 }): JSX.Element => {
+	const settings = useSettings();
+
 	useEffect(() => {
 		(() => {
 			if (bannersReducer.banners.length === 0) {
@@ -24,7 +28,7 @@ const Banner: React.FC<BannerProps> = ({
 	return (
 		<div className='banner'>
 			{bannersReducer.loading ? (
-				<p>Cargando</p>
+				<Spinner height='100%' />
 			) : (
 				<Fragment>
 					{bannersReducer.error && (
@@ -84,6 +88,7 @@ interface BannersReducer {
 	loading: boolean;
 	error: string;
 }
+
 interface BannerProps {
 	bannersReducer: BannersReducer;
 	getImages: any;
