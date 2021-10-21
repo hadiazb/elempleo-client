@@ -20,7 +20,7 @@ export const useSettings = () => {
 		autoplay: true,
 		autoplayButtonOutput: false,
 		arrowKeys: true,
-		autoplayTimeout: 1000,
+		autoplayTimeout: 8000,
 	});
 	const configReducer = useSelector(
 		(store: any) => store.configReducer
