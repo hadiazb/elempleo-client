@@ -1,5 +1,6 @@
 .home {
-  margin: 0 0 20px;
+  padding: 70px 0;
+  min-height: calc(100vh);
 }
 
 .home__title {

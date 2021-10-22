@@ -1,16 +1,47 @@
 .header {
-  background-color: rgb(3, 41, 29);
+  background-color: rgb(3, 3, 3);
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  z-index: 100;
 }
 
 .header__navigation {
-  height: 45px;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+
+}
+
+.header__navigation__logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 35px;
+  object-fit: contain;
+  color: #ffffff7e;
+}
+
+.name {
+  color: #ffffff7e;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: .8rem;
+  font-weight: 200;
+  font-style: oblique;
+  padding-left: 5px;
 }
 
 .active_nav {
   text-decoration: underline;
+}
+
+.header__navigation__list {
+  display: flex;
 }
 
 .header__navigation__item {

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TinySlider from 'tiny-slider-react';
 
 import NotFoundRecourse from '../NotFoundRecouse/NotFoundRecourse';
+import Spinner from '../../../../components/Spinner/Spinner';
 import ErrorMessage from '../../../../components/ErrorMessage/ErrorMessage';
 
 import { settings } from './setting';
@@ -26,7 +27,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	return (
 		<div className='carousel'>
 			{carouselReducer.loading ? (
-				<p>Cargando</p>
+				<Spinner height='100%' />
 			) : (
 				<Fragment>
 					{carouselReducer.error && (
