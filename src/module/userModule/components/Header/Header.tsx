@@ -14,7 +14,6 @@ const {
   REACT_APP_HOME_AUTH,
   REACT_APP_HOME_NOAUTH,
   REACT_APP_HOME_LOGIN,
-  REACT_APP_HOME_REGISTER,
   REACT_APP_HOME_CONTACT,
 }: any = process.env;
 
@@ -45,24 +44,14 @@ const Header: React.FC<HeaderProps> = ({ signout, isLogged, role }): JSX.Element
             Contactenos
           </NavLink>
           {!isLogged ? (
-            <>
-              <NavLink
-                activeClassName={style.active_nav}
-                className={`${style.header__navigation__item}`}
-                exact
-                to={REACT_APP_HOME_LOGIN}
-              >
-                Login
-              </NavLink>
-              <NavLink
-                activeClassName={style.active_nav}
-                className={`${style.header__navigation__item}`}
-                exact
-                to={REACT_APP_HOME_REGISTER}
-              >
-                Registrar
-              </NavLink>
-            </>
+            <NavLink
+              activeClassName={style.active_nav}
+              className={`${style.header__navigation__item}`}
+              exact
+              to={REACT_APP_HOME_LOGIN}
+            >
+              Login
+            </NavLink>
           ) : (
             <DropDown onClick={handleClick} role={role} />
           )}

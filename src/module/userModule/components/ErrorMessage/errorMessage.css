@@ -7,6 +7,8 @@
 	margin-right: calc(-50vw + 50%);
 	height: 25px;
 	color: rgb(84, 8, 8);
+	position: relative;
+	z-index: 100;
 }
 
 .error__message {

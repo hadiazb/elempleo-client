@@ -39,7 +39,6 @@
 .login__container__form {
   margin: 0 auto;
   width: 400px;
-  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,6 +46,7 @@
   border: 1px solid #f2f2f2;
   border-radius: 7px;
   background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .login__container__form .input {
@@ -55,18 +55,28 @@
   padding: 10px;
   width: 100%;
   font-size: 0.8rem;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  margin: 5px 0;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid #f2f2f2;
+  margin: 10px 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: #f2f2f2;
 }
 
 .login__container__form .continer__password {
+  position: relative;
   width: 100%;
-  margin: 5px 0;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin: 10px 0;
   height: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f2f2f2;
 }
 
 .span__input {
@@ -78,15 +88,28 @@
   justify-content: center;
   align-items: center;
   outline: none;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .login__container__form .submit {
-  margin: 10px 0;
+  margin: 20px 0 10px;
   height: 40px;
   outline: none;
   font-size: 1.2rem;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border: 1px solid #f2f2f2;
+  color: #f2f2f2;
+  font-size: 0.9rem;
+  transition: all 0.6s ease;
+}
+
+.login__container__form .submit:hover {
+  background-color: #f2f2f2;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
 }
 
 .input__password {
@@ -96,10 +119,31 @@
   width: 100%;
   border: none;
   font-size: 0.8rem;
+  background-color: transparent;
+  color: #f2f2f2;
+}
+
+.link {
+  color: #f2f2f2;
+  font-size: 0.8rem;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.link__nav {
+  padding: 0 5px;
+  color: #f2f2f2;
+  font-size: 0.8rem;
+  margin: 10px 0;
+  font-weight: 700;
+}
+
+.link__nav:hover {
+  text-decoration: underline;
 }
 
 .error {
   font-size: 0.6rem;
   padding-left: 5px;
-  color: rgb(231, 45, 39);
+  color: #2ecece;
 }
